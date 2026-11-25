@@ -5,3 +5,10 @@ __pycache__/
 uploads/*
 !uploads/.gitkeep
 qdrant_storage/
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+
