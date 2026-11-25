@@ -1,24 +1,23 @@
+from fastapi import FastAPI
 
-from fastapi import FastAPI #We import FastAPI so that we can create our backend application.
+from app.routes.documents import router as documents_router
 
 app = FastAPI(
     title="RAG Knowledge Assistant",
     description="AI assistant that answers questions from uploaded documents",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 
-@app.get("/") #This creates a GET endpoint.
+@app.get("/")
 def home():
-    return {
-        "message": "Welcome to RAG Knowledge Assistant",
-        "status": "Running"
-    }
+    return {"message": "Welcome to RAG Knowledge Assistant", "status": "Running"}
 
 
-@app.get("/health") #This endpoint checks whether our backend is running.This is called a health-check endpoint.
+@app.get("/health")
 def health_check():
-    return {
-        "status": "healthy",
-        "application": "RAG Knowledge Assistant"
-    }
+    return {"status": "healthy", "application": "RAG Knowledge Assistant"}
+
+
+# Register document routes
+app.include_router(documents_router)
