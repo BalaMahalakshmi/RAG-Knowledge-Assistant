@@ -1,0 +1,59 @@
+
+{
+  "dataset_name": "Machine Learning Basics RAG Evaluation",
+  "version": "1.0",
+  "description": "Evaluation dataset for the Machine Learning Basics PDF.",
+  "test_cases": [
+    {
+      "id": "ML001",
+      "question": "What is machine learning?",
+      "relevant_chunk_ids": [],
+      "expected_answer_points": [
+        "learning useful patterns from data",
+        "machine learning",
+        "data"
+      ]
+    },
+    {
+      "id": "ML002",
+      "question": "What is supervised learning?",
+      "relevant_chunk_ids": [],
+      "expected_answer_points": [
+        "labelled training examples",
+        "supervised learning",
+        "training data"
+      ]
+    },
+    {
+      "id": "ML003",
+      "question": "What is unsupervised learning?",
+      "relevant_chunk_ids": [],
+      "expected_answer_points": [
+        "unlabelled data",
+        "discovering patterns",
+        "structure in data"
+      ]
+    },
+    {
+      "id": "ML004",
+      "question": "What is reinforcement learning?",
+      "relevant_chunk_ids": [],
+      "expected_answer_points": [
+        "interaction",
+        "rewards",
+        "learning"
+      ]
+    },
+    {
+      "id": "ML005",
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "relevant_chunk_ids": [],
+      "expected_answer_points": [
+        "labelled examples",
+        "unlabelled data",
+        "supervised learning",
+        "unsupervised learning"
+      ]
+    }
+  ]
+}
