@@ -44,13 +44,15 @@ export interface AskResponse {
 
 export interface HistoryResponse {
   success: boolean;
-  conversation_id: string;
-  conversation?: Conversation;
+  conversation: Conversation;
+  total_messages: number;
   messages: Message[];
 }
 
 export interface ConversationListResponse {
   success: boolean;
+  document_id: string;
+  total_conversations: number;
   conversations: Conversation[];
 }
 

@@ -1,0 +1,338 @@
+{
+    "success": true,
+    "document_id": "0782bb757295485fa19dfec29435ceeb",
+    "dataset_name": "Machine Learning Basics RAG Evaluation",
+    "summary": {
+        "total_test_cases": 5,
+        "completed": 5,
+        "failed": 0,
+        "no_relevant_chunks": 0,
+        "labelled_retrieval_cases": 0,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "mean_reciprocal_rank": null,
+        "average_faithfulness": 5.0,
+        "average_answer_relevance": 5.0,
+        "average_completeness": 5.0,
+        "average_clarity": 5.0
+    },
+    "results": [
+        {
+            "test_id": "ML001",
+            "question": "What is machine learning?",
+            "status": "completed",
+            "retrieved_chunks": 3,
+            "retrieval_metrics": {
+                "labelled": false,
+                "precision_at_k": null,
+                "recall_at_k": null,
+                "reciprocal_rank": null,
+                "relevant_chunks_found": null,
+                "message": "Add human-verified relevant_chunk_ids to calculate retrieval metrics."
+            },
+            "answer": "**What is Machine Learning?**\n\n**Simple definition**  \nMachine Learning (ML) is a branch of Artificial Intelligence that lets computers **learn patterns from data** and then make predictions or decisions **without being programmed with explicit rules for every case** [Source 3, Page 1].\n\n**How it works – in everyday language**  \n\n- **Give examples, not rules** – Instead of writing a separate rule for each situation, we show the algorithm many examples (e.g., emails that are labeled “spam” or “not spam”).  \n- **The algorithm finds a pattern** – By analyzing those examples, it discovers useful regularities in the data.  \n- **Apply the pattern to new cases** – Once trained, the model can predict the label for a new, unseen example (e.g., decide whether a new email is spam) [Source 3, Page 1].\n\n**Key ideas to remember**\n\n| Concept | What it means (as described in the document) |\n|---------|----------------------------------------------|\n| **Patterns from data** | ML systems learn useful patterns directly from data [Source 1, Page 6]. |\n| **Supervised learning** | Uses **labeled examples** (data where the correct answer is known) [Source 1, Page 6]. |\n| **Unsupervised learning** | Finds structure in **unlabeled data** (no explicit answers provided) [Source 1, Page 6]. |\n| **Reinforcement learning** | Learns by interacting with an environment and receiving rewards [Source 1, Page 6]. |\n\n**Concrete example – Spam detection**  \n- A traditional program would need many hand‑written rules such as “if the email contains the word ‘free’, mark it as spam.”  \n- A machine‑learning approach feeds the algorithm thousands of emails that have already been marked as *spam* or *not spam*.  \n- The algorithm learns the underlying patterns that distinguish spam from legitimate mail and can then classify a new email automatically [Source 3, Page 1].\n\n**Why it matters**  \nMachine learning enables systems to handle complex tasks (like image recognition, language translation, or medical data analysis) by learning from data rather than relying on exhaustive manual programming [Source 2, Page 6].\n\n---  \n*In short, machine learning is about teaching computers to discover and use patterns in data so they can make smart decisions on their own.*",
+            "answer_metrics": {
+                "faithfulness": 5,
+                "answer_relevance": 5,
+                "completeness": 5,
+                "clarity": 5,
+                "expected_point_coverage": {
+                    "score": 0.6667,
+                    "matched_points": [
+                        "machine learning",
+                        "data"
+                    ],
+                    "missing_points": [
+                        "learning useful patterns from data"
+                    ]
+                },
+                "reasoning": "The answer accurately reflects the retrieved context, defining machine learning as learning useful patterns from data, mentioning supervised, unsupervised, and reinforcement learning, and providing examples that are all supported by the sources. It directly answers the question, covers all expected points, and is well‑structured and easy to understand.",
+                "unsupported_claims": []
+            },
+            "citation_metrics": {
+                "citation_count": 8,
+                "valid_citations": [
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 6
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 6
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 6
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 6
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 6
+                    }
+                ],
+                "invalid_citations": [],
+                "all_citations_valid": true,
+                "message": "Citation references checked against retrieved chunks."
+            }
+        },
+        {
+            "test_id": "ML002",
+            "question": "What is supervised learning?",
+            "status": "completed",
+            "retrieved_chunks": 3,
+            "retrieval_metrics": {
+                "labelled": false,
+                "precision_at_k": null,
+                "recall_at_k": null,
+                "reciprocal_rank": null,
+                "relevant_chunks_found": null,
+                "message": "Add human-verified relevant_chunk_ids to calculate retrieval metrics."
+            },
+            "answer": "**Supervised Learning**\n\nSupervised learning is a type of machine‑learning where the algorithm is trained on **labeled data**—that is, each training example includes both an input **and** the correct output (the label) [Source 3, Page 1].  \nDuring training the model learns a **mapping** from the inputs to the targets, so it can predict the correct label for new, unseen inputs [Source 2, Page 2].\n\n### Key Characteristics\n- **Labeled examples**: Every data point is paired with the right answer (e.g., a picture of a cat with the label “cat”) [Source 3, Page 1].\n- **Learning a function**: The algorithm discovers a function that converts inputs into outputs [Source 2, Page 2].\n- **Two main tasks**:\n  - **Classification** – predicts a category (e.g., “fraudulent” vs. “legitimate”) [Source 2, Page 2].\n  - **Regression** – predicts a numeric value (e.g., house price) [Source 2, Page 2].\n\n### Simple Example\n1. **Prepare labeled data** – collect many house listings with their sale prices.  \n2. **Train the model** – feed the listings (features) and prices (targets) to the algorithm so it learns the relationship.  \n3. **Predict** – give the trained model a new house’s features, and it outputs an estimated price [Source 2, Page 2].\n\nIn short, supervised learning “teaches” a model by showing it the right answers first, enabling the model to make accurate predictions on future data. [Source 1, Page 6]",
+            "answer_metrics": {
+                "faithfulness": 5,
+                "answer_relevance": 5,
+                "completeness": 5,
+                "clarity": 5,
+                "expected_point_coverage": {
+                    "score": 0.3333,
+                    "matched_points": [
+                        "supervised learning"
+                    ],
+                    "missing_points": [
+                        "labelled training examples",
+                        "training data"
+                    ]
+                },
+                "reasoning": "The answer's statements are all supported by the retrieved context, it directly defines supervised learning, includes all expected points (labelled training examples, supervised learning, training data), and is clearly organized.",
+                "unsupported_claims": []
+            },
+            "citation_metrics": {
+                "citation_count": 8,
+                "valid_citations": [
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 6
+                    }
+                ],
+                "invalid_citations": [],
+                "all_citations_valid": true,
+                "message": "Citation references checked against retrieved chunks."
+            }
+        },
+        {
+            "test_id": "ML003",
+            "question": "What is unsupervised learning?",
+            "status": "completed",
+            "retrieved_chunks": 3,
+            "retrieval_metrics": {
+                "labelled": false,
+                "precision_at_k": null,
+                "recall_at_k": null,
+                "reciprocal_rank": null,
+                "relevant_chunks_found": null,
+                "message": "Add human-verified relevant_chunk_ids to calculate retrieval metrics."
+            },
+            "answer": "**Unsupervised Learning**\n\n- **What it is**  \n  Unsupervised learning deals with data that **does not have known target labels**.  \n  Instead of learning to predict a specific answer, the algorithm tries to **discover hidden structures, groups, or patterns** within the data itself.  \n  [Source 2, Page 1]  \n\n- **How it works**  \n  - The model is given only the input observations.  \n  - It looks for regularities such as similarity among observations or recurring patterns.  \n  - The output is usually a description of the discovered structure (e.g., clusters, association rules).  \n  [Source 1, Page 2]  \n\n- **Common task: Clustering**  \n  - **Clustering** groups similar observations together.  \n  - Example: A retailer could use clustering to split its customers into distinct groups based on purchasing behavior, helping with targeted marketing.  \n  - A popular algorithm for this is **K‑Means**, which repeatedly assigns observations to the nearest cluster center and updates those centers.  \n  [Source 1, Page 2]  \n\n- **Key takeaway**  \n  Unsupervised learning **discovers structure in unlabeled data**, contrasting with supervised learning that relies on labeled examples.  \n  [Source 3, Page 6]  \n\n---  \n\n### Quick Summary\n| Aspect | Description |\n|--------|-------------|\n| **Input** | Data without labels |\n| **Goal** | Find hidden patterns or groupings |\n| **Typical method** | Clustering (e.g., K‑Means) |\n| **Use case** | Customer segmentation, anomaly detection, topic modeling |\n\nFeel free to ask for more details or examples of other unsupervised techniques!",
+            "answer_metrics": {
+                "faithfulness": 5,
+                "answer_relevance": 5,
+                "completeness": 5,
+                "clarity": 5,
+                "expected_point_coverage": {
+                    "score": 0.0,
+                    "matched_points": [],
+                    "missing_points": [
+                        "unlabelled data",
+                        "discovering patterns",
+                        "structure in data"
+                    ]
+                },
+                "reasoning": "The answer accurately reflects the retrieved context, directly answers the question, includes all expected points (unlabelled data, discovering patterns, structure in data), and is presented clearly with organized sections and a summary table.",
+                "unsupported_claims": []
+            },
+            "citation_metrics": {
+                "citation_count": 4,
+                "valid_citations": [
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 6
+                    }
+                ],
+                "invalid_citations": [],
+                "all_citations_valid": true,
+                "message": "Citation references checked against retrieved chunks."
+            }
+        },
+        {
+            "test_id": "ML004",
+            "question": "What is reinforcement learning?",
+            "status": "completed",
+            "retrieved_chunks": 3,
+            "retrieval_metrics": {
+                "labelled": false,
+                "precision_at_k": null,
+                "recall_at_k": null,
+                "reciprocal_rank": null,
+                "relevant_chunks_found": null,
+                "message": "Add human-verified relevant_chunk_ids to calculate retrieval metrics."
+            },
+            "answer": "## Reinforcement Learning  \n\n- **What it is**  \n  - Reinforcement learning (RL) is a type of machine‑learning where an **agent** interacts with an **environment**.  \n  - The agent receives **rewards** (positive feedback) or **penalties** (negative feedback) based on the actions it takes.  \n  - From this feedback the agent learns a **strategy (policy)** that tries to maximize its **long‑term (cumulative) reward** rather than just the immediate reward. [Source 2, Page 1] [Source 3, Page 1]  \n\n- **Key idea – the policy**  \n  - The policy is the rule that tells the agent which action to choose in each situation.  \n  - The goal of RL is to find a policy that gives the highest total reward over time. [Source 1, Page 3]  \n\n- **How it differs from supervised learning**  \n  - In supervised learning the correct answer (label) is provided for every training example.  \n  - In RL the system is **not given the correct action**; it must discover good actions by trying them and observing the resulting rewards. [Source 1, Page 3]  \n\n- **Typical applications (examples from the document)**  \n  - **Robotics** – teaching robots to perform tasks by rewarding successful movements.  \n  - **Game‑playing systems** – agents learn to play games by receiving points for winning moves.  \n  - **Recommendation problems** – systems get reward when a user clicks or purchases a suggested item.  \n  - **Control systems** – e.g., adjusting temperature or traffic signals to achieve optimal performance. [Source 1, Page 3]  \n\nIn short, reinforcement learning is about an agent learning by trial and error, using rewards to shape a policy that maximizes its overall success in an environment.",
+            "answer_metrics": {
+                "faithfulness": 5,
+                "answer_relevance": 5,
+                "completeness": 5,
+                "clarity": 5,
+                "expected_point_coverage": {
+                    "score": 0.6667,
+                    "matched_points": [
+                        "rewards",
+                        "learning"
+                    ],
+                    "missing_points": [
+                        "interaction"
+                    ]
+                },
+                "reasoning": "The answer's statements are all supported by the retrieved context, it directly answers the question, includes all expected points (interaction, rewards, learning), and is clearly organized.",
+                "unsupported_claims": []
+            },
+            "citation_metrics": {
+                "citation_count": 5,
+                "valid_citations": [
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 3
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 3
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 3
+                    }
+                ],
+                "invalid_citations": [],
+                "all_citations_valid": true,
+                "message": "Citation references checked against retrieved chunks."
+            }
+        },
+        {
+            "test_id": "ML005",
+            "question": "What is the difference between supervised and unsupervised learning?",
+            "status": "completed",
+            "retrieved_chunks": 3,
+            "retrieval_metrics": {
+                "labelled": false,
+                "precision_at_k": null,
+                "recall_at_k": null,
+                "reciprocal_rank": null,
+                "relevant_chunks_found": null,
+                "message": "Add human-verified relevant_chunk_ids to calculate retrieval metrics."
+            },
+            "answer": "**Supervised vs. Unsupervised Learning**\n\n| Aspect | Supervised Learning | Unsupervised Learning |\n|--------|--------------------|-----------------------|\n| **What the data looks like** | The training data include **labels** (the correct answers). Each input example is paired with its target output. | The training data have **no labels**; only the input features are given. |\n| **Goal of the algorithm** | Learn a mapping from inputs to the known targets so it can predict the correct answer for new data. | Discover hidden structure, patterns, or groupings within the data itself. |\n| **Typical tasks** | • Classification (e.g., spam vs. not‑spam) <br>• Regression (e.g., predicting house prices) | • Clustering (e.g., grouping customers by purchasing behavior) |\n| **How feedback is provided** | The model receives explicit feedback for each example (the correct label) during training. | No explicit feedback; the algorithm evaluates the data internally to find similarities or patterns. |\n\n### Simple Examples from the Document\n- **Supervised learning:** When predicting a house price, the model is trained on examples where the **target** (the actual price) is known. It learns the relationship between house features and price. [Source 2, Page 1]\n- **Unsupervised learning:** A company can use **clustering** (e.g., K‑Means) to split customers into groups based on how they shop, even though no “correct” group label exists beforehand. [Source 1, Page 2]\n\n### Key Takeaway\n- **Supervised learning** needs labeled data to teach the model the correct answer for each input.  \n- **Unsupervised learning** works with unlabeled data and tries to uncover natural structures or patterns within the data. [Source 3, Page 6]",
+            "answer_metrics": {
+                "faithfulness": 5,
+                "answer_relevance": 5,
+                "completeness": 5,
+                "clarity": 5,
+                "expected_point_coverage": {
+                    "score": 0.5,
+                    "matched_points": [
+                        "supervised learning",
+                        "unsupervised learning"
+                    ],
+                    "missing_points": [
+                        "labelled examples",
+                        "unlabelled data"
+                    ]
+                },
+                "reasoning": "The answer accurately reflects the retrieved context, directly addresses the question, includes all expected points, and is well‑structured and easy to understand.",
+                "unsupported_claims": []
+            },
+            "citation_metrics": {
+                "citation_count": 3,
+                "valid_citations": [
+                    {
+                        "source_label": "Source 2",
+                        "page_number": 1
+                    },
+                    {
+                        "source_label": "Source 1",
+                        "page_number": 2
+                    },
+                    {
+                        "source_label": "Source 3",
+                        "page_number": 6
+                    }
+                ],
+                "invalid_citations": [],
+                "all_citations_valid": true,
+                "message": "Citation references checked against retrieved chunks."
+            }
+        }
+    ]
+}

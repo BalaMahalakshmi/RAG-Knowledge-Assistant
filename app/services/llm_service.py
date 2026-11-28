@@ -1,4 +1,3 @@
-
 import os
 import logging
 
@@ -11,10 +10,7 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 # Groq configuration
-GROQ_MODEL = os.getenv(
-    "GROQ_MODEL",
-    "openai/gpt-oss-120b"
-)
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 MAX_COMPLETION_TOKENS = 1200
 
@@ -28,21 +24,13 @@ def get_groq_client() -> AsyncGroq:
     api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
-        raise ValueError(
-            "GROQ_API_KEY is missing from the environment."
-        )
+        raise ValueError("GROQ_API_KEY is missing from the environment.")
 
-    return AsyncGroq(
-        api_key=api_key,
-        timeout=60.0,
-        max_retries=2
-    )
+    return AsyncGroq(api_key=api_key, timeout=60.0, max_retries=2)
 
 
 async def generate_answer(
-    question: str,
-    context: str,
-    conversation_history: list = None
+    question: str, context: str, conversation_history: list = None
 ) -> str:
     """
     Generate a grounded answer using Groq.
@@ -98,10 +86,44 @@ STRICT RULES:
 
 10. Do not claim that information is in the PDF
     unless it is supported by the supplied context.
+    
+11. STRICT DOCUMENT GROUNDING:
+    - Use only information supported by retrieved context.
+    - Do not add general knowledge or unsupported examples.
+    - Do not introduce techniques, advantages or facts
+      that are absent from the retrieved context.
+    - If information is unavailable, say so clearly.
+
+12. STRICT CITATION FORMAT:
+    - Cite factual information using this exact format:
+      [Source 1, Page 2]
+    - Always include both source number and page number.
+    - Never use [Source 1] alone.
+    - Never use 【Source 1】 or 【Source 1, Page 2】.
+    - Use only source labels and page numbers supplied
+      in the retrieved context.
+    - Never invent citations.
+
+13. Place citations next to the factual statements
+    they support.
+
+14. Do not fabricate quotations from the document.
 
 Give a clear, accurate and educational answer.
 """
 
+    # Prepare conversation history
+    history_text = "No previous conversation."
+
+    if conversation_history:
+        history_text = "\n".join(
+            [
+                f"{message['role'].capitalize()}: {message['content']}"
+                for message in conversation_history
+            ]
+        )
+
+    # Prepare user prompt
     user_prompt = f"""
 RECENT CONVERSATION HISTORY:
 
@@ -128,37 +150,39 @@ If the current retrieved context does not support
 the answer, clearly say that sufficient information
 could not be found in the uploaded document.
 
-Include source citations where applicable.
+CITATION REQUIREMENTS:
+
+Every factual statement based on the retrieved context
+must include a citation in this exact format:
+
+[Source 1, Page 2]
+
+Always include the page number.
+
+Do not use source-only citations such as [Source 1].
+
+Do not use alternative bracket formats.
+
+Never invent source labels or page numbers.
 """
-    
+
     try:
 
         response = await client.chat.completions.create(
             model=GROQ_MODEL,
             messages=[
-                {
-                    "role": "system",
-                    "content": system_prompt
-                },
-                {
-                    "role": "user",
-                    "content": user_prompt
-                }
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
             ],
-            max_completion_tokens=MAX_COMPLETION_TOKENS
+            max_completion_tokens=MAX_COMPLETION_TOKENS,
         )
 
         answer = response.choices[0].message.content
 
         if not answer or not answer.strip():
-            raise RuntimeError(
-                "Groq returned an empty response."
-            )
+            raise RuntimeError("Groq returned an empty response.")
 
-        logger.info(
-            "Answer generated successfully using %s",
-            GROQ_MODEL
-        )
+        logger.info("Answer generated successfully using %s", GROQ_MODEL)
 
         return answer.strip()
 
@@ -167,11 +191,7 @@ Include source citations where applicable.
         raise
 
 
-
-async def rewrite_followup_question(
-    question: str,
-    conversation_history: list
-) -> str:
+async def rewrite_followup_question(question: str, conversation_history: list) -> str:
     """
     Convert a follow-up question into a standalone
     question using recent conversation history.
@@ -225,14 +245,9 @@ RULES:
 
     response = await client.chat.completions.create(
         model=GROQ_MODEL,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
+        messages=[{"role": "user", "content": prompt}],
         max_completion_tokens=200,
-        temperature=0
+        temperature=0,
     )
 
     rewritten = response.choices[0].message.content

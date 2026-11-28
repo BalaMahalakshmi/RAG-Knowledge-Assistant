@@ -9,10 +9,13 @@ import {
 } from "lucide-react";
 
 import type { Conversation } from "../types/chat";
+import UploadDocument from "./UploadDocument";
+import type { DocumentUploadResponse } from "../services/documentApi";
 
 interface Props {
   documentId: string;
-  setDocumentId: (value: string) => void;
+  documentName: string;
+  onDocumentUploaded: (document: DocumentUploadResponse) => void;
   conversations: Conversation[];
   activeConversationId: string | null;
   onNewChat: () => void;
@@ -24,7 +27,8 @@ interface Props {
 
 export default function Sidebar({
   documentId,
-  setDocumentId,
+  documentName,
+  onDocumentUploaded,
   conversations,
   activeConversationId,
   onNewChat,
@@ -62,30 +66,23 @@ export default function Sidebar({
 
       {!collapsed && (
         <>
-          <div className="sidebar-document">
-            <label>ACTIVE DOCUMENT ID</label>
+          <UploadDocument onDocumentReady={onDocumentUploaded} />
 
-            <div className="document-input-wrapper">
-              <FileText size={16} />
+          {documentId && (
+            <div className="active-document-card">
+              <div className="active-document-icon">
+                <FileText size={17} />
+              </div>
 
-              <input
-                value={documentId}
-                onChange={(event) =>
-                  setDocumentId(event.target.value)
-                }
-                placeholder="Paste your document ID"
-              />
+              <div className="active-document-info">
+                <strong>Active document</strong>
+                <span title={documentName}>{documentName || documentId}</span>
+                <small>Ready for questions</small>
+              </div>
             </div>
+          )}
 
-            <span className="document-hint">
-              Use the ID returned by your PDF upload API.
-            </span>
-          </div>
-
-          <button
-            className="new-chat-button"
-            onClick={onNewChat}
-          >
+          <button className="new-chat-button" onClick={onNewChat}>
             <Plus size={18} />
             New conversation
           </button>
@@ -113,9 +110,7 @@ export default function Sidebar({
                 >
                   <button
                     className="conversation-select"
-                    onClick={() =>
-                      onSelectConversation(conversation.id)
-                    }
+                    onClick={() => onSelectConversation(conversation.id)}
                   >
                     <MessageSquare size={16} />
 
@@ -124,9 +119,7 @@ export default function Sidebar({
 
                   <button
                     className="delete-conversation"
-                    onClick={() =>
-                      onDeleteConversation(conversation.id)
-                    }
+                    onClick={() => onDeleteConversation(conversation.id)}
                     title="Delete conversation"
                   >
                     <Trash2 size={15} />
